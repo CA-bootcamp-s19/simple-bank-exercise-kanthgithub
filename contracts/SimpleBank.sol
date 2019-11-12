@@ -13,7 +13,7 @@ contract SimpleBank {
     //
 
     mapping (address => uint) private accountBalances;
-    mapping (address => bool) public userEnrolledMap;
+    mapping (address => bool) public enrolled;
     address public owner;
 
     //
@@ -64,10 +64,10 @@ contract SimpleBank {
     function enroll() public returns (bool){
         require(msg.sender != address(0));
 
-        userEnrolledMap[msg.sender] = true;
+        enrolled[msg.sender] = true;
         emit LogEnrolled(msg.sender);
 
-        return userEnrolledMap[msg.sender];
+        return enrolled[msg.sender];
     }
 
     /// @notice Deposit ether into bank

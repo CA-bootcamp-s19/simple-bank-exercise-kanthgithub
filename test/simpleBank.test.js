@@ -25,12 +25,12 @@ contract('SimpleBank', function(accounts) {
   it("should mark addresses as enrolled", async () => {
     await instance.enroll({from: alice})
 
-    const aliceEnrolled = await instance.userEnrolledMap(alice, {from: alice})
+    const aliceEnrolled = await instance.enrolled(alice, {from: alice})
     assert.equal(aliceEnrolled, true, 'enroll balance is incorrect, check balance method or constructor')
   });
 
   it("should not mark unenrolled users as enrolled", async() =>{
-    const ownerEnrolled = await instance.userEnrolledMap(owner, {from: owner})
+    const ownerEnrolled = await instance.enrolled(owner, {from: owner})
     assert.equal(ownerEnrolled, false, 'only enrolled users should be marked enrolled')
   })
 
